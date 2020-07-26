@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block content %}
+<form action="/edit/{{eruption.eruption_id}}" method="post">
+    <div class="row">
+        <div class="col">
+            <label for="eruption_id">Eruption No.</label>
+            <input id="eruption_id" type="text" class="form-control" placeholder="Eruption No." name="eruption_id" value="{{eruption.eruption_id}}">
+        </div>
+        <div class="col">
+            <label for="Eruption_length_mins">Eruption Duration</label>
+            <input id="Eruption_length_mins" type="text" class="form-control" placeholder="Eruption Duration"
+                   name="Eruption_length_mins" value="{{eruption.Eruption_length_mins}}">
+        </div>
+        <div class="col">
+            <label for="Eruption_wait_mins">Eruption Interval</label>
+            <input id="Eruption_wait_mins" type="text" class="form-control" placeholder="Eruption Interval" name="Eruption_wait_mins" value="{{eruption.Eruption_wait_mins}}">
+        </div>
+    </div>
+
+  
+    <button type="submit" class="btn btn-success">Save</button>
+
+</form>
+{% endblock %}

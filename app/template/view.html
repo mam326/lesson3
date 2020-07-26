@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="card" class="m-5 p-2">
+    <h5 class="card-title">Eruption Number {{ eruption.fldName }}</h5>
+
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">{{ eruption.Eruption_length_mins }}</li>
+        <li class="list-group-item">{{ eruption.Eruption_wait_mins }}</li>
+    </ul>
+    <div class="card-body">
+        <a href="/edit/{{eruption.eruption_id}}" class="card-link btn btn-primary">edit</a>
+    </div>
+</div>
+<form action="/delete/{{eruption.eruption_id}}" method="post"><button type="submit" class="btn btn-danger">Save</button></form>
+
+
+{% endblock %}

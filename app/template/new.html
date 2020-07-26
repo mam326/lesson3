@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block content %}
+<form action="/cities/new" method="POST">
+    <div class="row">
+        <div class="col">
+            <label for="fldName">Eruption No.</label>
+            <input id="fldName" type="text" class="form-control" placeholder="Eruption No" name="eruption_no">
+        </div>
+        <div class="col">
+            <label for="Eruption_length_mins">Eruption Duration (In Minutes)</label>
+            <input id="Eruption_length_mins" t ype="text" class="form-control" placeholder="City Abbreviation"
+                   name="Eruption_length_mins">
+        </div>
+        <div class="col">
+            <label for="Eruption_wait_mins">Time Elapsed Between Eruptions (In Minutes)</label>
+            <input id="Eruption_wait_mins" type="text" class="form-control" placeholder="Eruption Interval" name="Eruption_wait_mins">
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success">Success</button>
+
+</form>
+
+{% endblock %}

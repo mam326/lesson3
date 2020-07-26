@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block content %}
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Eruption No.</th>
+        <th scope="col">Duration</th>
+        <th scope="col">Interval</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for eruption in eruptions %}
+    <tr>
+        <td><a href="view/{{eruption.eruption_id}}">Eruption #{{ eruption.eruption_id }}</a></td>
+        <td>{{ eruption.Eruption_length_mins }}</td>
+		<td>{{ eruption.Eruption_wait_mins }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
