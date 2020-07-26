@@ -71,8 +71,8 @@ def form_insert_post():
 @app.route('/delete/<int:eruption_id>', methods=['POST'])
 def form_delete_post(city_id):
     cursor = mysql.get_db().cursor()
-    sql_delete_query = """DELETE FROM tblfaithfulImport WHERE id = %s """
-    cursor.execute(sql_delete_query, city_id)
+    sql_delete_query = """DELETE FROM tblfaithfulImport WHERE eruption_id = %s """
+    cursor.execute(sql_delete_query, eruption_id)
     mysql.get_db().commit()
     return redirect("/", code=302)
 
@@ -88,23 +88,23 @@ def api_browse() -> str:
 
 
 @app.route('/api/v1/eruptions/<int:eruption_id>', methods=['GET'])
-def api_retrieve(city_id) -> str:
+def api_retrieve(eruption_id) -> str:
     cursor = mysql.get_db().cursor()
-    cursor.execute('SELECT * FROM tblfaithfulImport WHERE id=%s', city_id)
+    cursor.execute('SELECT * FROM tblfaithfulImport WHERE eruption_id=%s', eruption_id)
     result = cursor.fetchall()
     json_result = json.dumps(result);
     resp = Response(json_result, status=200, mimetype='application/json')
     return resp
 
 
-@app.route('/api/v1/eruptions/', methods=['POST'])
-def api_add() -> str:
+@app.route('/api/v1/eruptions/<int:eruption_id>', methods=['PUT'])
+def api_edit(city_id) -> str:
     resp = Response(status=201, mimetype='application/json')
     return resp
 
 
-@app.route('/api/v1/eruptions/<int:eruption_id>', methods=['PUT'])
-def api_edit(city_id) -> str:
+@app.route('/api/v1/eruptions/', methods=['POST'])
+def api_add() -> str:
     resp = Response(status=201, mimetype='application/json')
     return resp
 
