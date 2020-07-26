@@ -103,8 +103,19 @@ def api_edit(city_id) -> str:
     return resp
 
 
-@app.route('/api/v1/eruptions/', methods=['POST'])
+@app.route('/api/v1/eruptions', methods=['POST'])
 def api_add() -> str:
+
+    content = request.json
+
+    cursor = mysql.get_db().cursor()
+    inputData = (content['eruption_id'],
+                 content['Eruption_length_mins'],
+                 content['Eruption_wait_mins'],
+                 )
+    sql_insert_query = """INSERT INTO tblfaithfulImport (eruption_id,Eruption_length_mins,Eruption_wait_mins) VALUES (%s, %s,%s) """
+    cursor.execute(sql_insert_query, inputData)
+    mysql.get_db().commit()
     resp = Response(status=201, mimetype='application/json')
     return resp
 
