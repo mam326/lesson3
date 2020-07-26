@@ -30,9 +30,9 @@ def index():
 @app.route('/view/<int:eruption_id>', methods=['GET'])
 def record_view(eruption_id):
     cursor = mysql.get_db().cursor()
-    cursor.execute('SELECT * FROM tblfaithfulImport WHERE id=%s', eruption_id)
+    cursor.execute('SELECT * FROM tblfaithfulImport WHERE eruption_id=%s', eruption_id)
     result = cursor.fetchall()
-    return render_template('view.html', title='View Form', city=result[0])
+    return render_template('view.html', title='View Form', eruption=result[0])
 
 
 @app.route('/edit/<int:eruption_id>', methods=['GET'])
@@ -62,7 +62,7 @@ def form_insert_post():
     cursor = mysql.get_db().cursor()
     inputData = (request.form.get('eruption_id'), 
 				 request.form.get('Eruption_length_mins'), 
-				 request.form.get('Eruption_wait_mins'),
+				 request.form.get('Eruption_wait_mins'))
     sql_insert_query = """INSERT INTO tblfaithfulImport (eruption_id,Eruption_length_mins,Eruption_wait_mins) VALUES (%s, %s,%s,%s) """
     cursor.execute(sql_insert_query, inputData)
     mysql.get_db().commit()
