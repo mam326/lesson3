@@ -23,5 +23,5 @@
 #Part E
 ##Delete a record in Postman
 ![postman_request_output](screenshots/parte-1.PNG)
-![postman_request_output](screenshots/partc-2.PNG)
-![postman_request_output](screenshots/partc-3.PNG)
+![postman_request_output](screenshots/parte-2.PNG)
+![postman_request_output](screenshots/parte-3.PNG)
