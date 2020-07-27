@@ -98,32 +98,26 @@ def api_retrieve(eruption_id) -> str:
 
 
 @app.route('/api/v1/eruptions/<int:eruption_id>', methods=['PUT'])
-def api_edit(city_id) -> str:
-    resp = Response(status=201, mimetype='application/json')
-    return resp
-
-
-@app.route('/api/v1/eruptions', methods=['POST'])
-def api_add() -> str:
-
-    content = request.json
-
+def api_edit(eruption_id) -> int:
     cursor = mysql.get_db().cursor()
-    inputData = (content['eruption_id'],
-                 content['Eruption_length_mins'],
-                 content['Eruption_wait_mins'],
-                 )
-    sql_insert_query = """INSERT INTO tblfaithfulImport (eruption_id,Eruption_length_mins,Eruption_wait_mins) VALUES (%s, %s,%s) """
-    cursor.execute(sql_insert_query, inputData)
+    content = request.json
+    inputData = (content['eruption_id'], content['Eruption_length_mins'], content['Eruption_wait_mins'], eruption_id)
+    sql_update_query = """UPDATE tblfaithfulImport p SET p.eruption_id = %s, p.Eruption_length_mins = %s, p.Eruption_wait_mins = %s WHERE p.eruption_id = %s """
+    cursor.execute(sql_update_query, inputData)
     mysql.get_db().commit()
-    resp = Response(status=201, mimetype='application/json')
+    resp = Response(status=200, mimetype='application/json')
     return resp
 
 
-@app.route('/api/eruptions/<int:eruption_id>', methods=['DELETE'])
-def api_delete(city_id) -> str:
+@app.route('/api/v1/eruptions/<int:eruption_id>', methods=['DELETE'])
+def api_delete(eruption_id) -> str:
+    cursor = mysql.get_db().cursor()
+    sql_delete_query = """DELETE FROM tblfaithfulImport WHERE eruption_id = %s """
+    cursor.execute(sql_delete_query, eruption_id)
+    mysql.get_db().commit()
     resp = Response(status=210, mimetype='application/json')
     return resp
+
 
 
 if __name__ == '__main__':
