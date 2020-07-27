@@ -18,7 +18,7 @@
 ##Edit a record in Postman
 ![postman_request_output](screenshots/partd-1.PNG)
 ![postman_request_output](screenshots/partd-2.PNG)
-
+![postman_request_output](screenshots/partd-3.PNG)
 
 #Part E
 ##Delete a record in Postman

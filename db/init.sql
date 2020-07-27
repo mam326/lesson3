@@ -98,7 +98,7 @@ INSERT INTO tblfaithfulImport (eruption_id, Eruption_length_mins, Eruption_wait_
     ( 63, 1.750, 48),
     ( 64, 4.800, 82),
     ( 65, 1.817, 60),
-    ( 66, 4.400, 92),
+    ( 66, 4, 92),
     ( 67, 4.167, 78),
     ( 68, 4.700, 78),
     ( 69, 2.067, 65),
